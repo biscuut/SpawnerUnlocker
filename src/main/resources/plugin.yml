@@ -1,0 +1,19 @@
+main: codes.biscuit.spawnerunlocker.SpawnerUnlocker
+name: SpawnerUnlocker
+version: 1.0
+author: Biscut
+depend: [SilkSpawners]
+commands:
+  rankup:
+    description: Use xp to rankup to the next level.
+  spawnerunlocker:
+    aliases: [su]
+    description: The main command.
+  checklevel:
+    aliases: [lvl, level]
+    description: Check your level.
+permissions:
+  spawnerunlocker.admin:
+    default: op
+  spawnerunlocker.checklevel:
+    default: true

@@ -1,0 +1,45 @@
+##########################################################################################
+#    _____                                      _    _       _            _              #
+#   / ____|                                    | |  | |     | |          | |             #
+#  | (___  _ __   __ ___      ___ __   ___ _ __| |  | |_ __ | | ___   ___| | _____ _ __  #
+#   \___ \| '_ \ / _` \ \ /\ / / '_ \ / _ \ '__| |  | | '_ \| |/ _ \ / __| |/ / _ \ '__| #
+#   ____) | |_) | (_| |\ V  V /| | | |  __/ |  | |__| | | | | | (_) | (__|   <  __/ |    #
+#  |_____/| .__/ \__,_| \_/\_/ |_| |_|\___|_|   \____/|_| |_|_|\___/ \___|_|\_\___|_|    #
+#         | |                                                                            #
+#         |_|                                                                            #
+#                                   v${version} by Biscut                                        #
+##########################################################################################
+
+# List your spawners as shown below
+spawners:
+  1:
+    mobs:
+    - 'COW'
+    - 'ZOMBIE'
+    levels: 10
+  2:
+    mobs:
+    - 'BLAZE'
+    levels: 20
+
+# List your spawners here that you would like players to unlock at level 0
+default-spawners:
+  - 'SPIDER'
+
+# The level that players start at (can only go below default using /su setlevel <player> <level>)
+default-level: 0
+
+# How often should the server save the levels config? (in seconds)
+save-interval: 300
+
+messages:
+  no-permission-command: '&cNo permission!'
+  no-permission-place: '&cYou cannot place this mob!'
+  no-permission-place-level: '&cYou cannot place this mob yet! You can unlock {spawner} spawners at level {level}!' # Placeholders: {level}, {spawner}
+  not-enough-levels: 'You do not have enough XP levels! You need {xpremaining} more XP level(s) to rankup to level {nextlevel}!' # Placeholders: {xpremaining}, {nextlevel}, {nextlevelxp}
+  max-level: '&aYou are already max level!'
+  next-level: '&aYou are now level {level}!' # Placeholders: {level}, {previouslevel}
+  level: '&aYou are currently level {level}.' # Placeholders: {level}
+
+# Please do not change #
+config-version: 1
