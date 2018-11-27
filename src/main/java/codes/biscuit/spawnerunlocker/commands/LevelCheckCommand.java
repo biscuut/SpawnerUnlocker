@@ -22,6 +22,8 @@ public class LevelCheckCommand implements CommandExecutor {
                 if (!main.getConfigUtils().getLevelCheckMessage(main.getUtils().getPlayerLevel((Player)sender)).equals("")) {
                     sender.sendMessage(main.getConfigUtils().getLevelCheckMessage(main.getUtils().getPlayerLevel((Player)sender)));
                 }
+            } else {
+                sender.sendMessage(ChatColor.RED + "No permission!");
             }
         } else {
             sender.sendMessage(ChatColor.RED + "You can only use this command ingame!");

@@ -10,21 +10,62 @@
 #                                   v${version} by Biscut                                        #
 ##########################################################################################
 
-# List your spawners as shown below
+# Choose what currency it uses to level up. Options: 'XPLEVELS', 'MONEY', 'XP'
+currency: 'XPLEVELS'
+
+# List your spawners and XP levels here
 spawners:
-  1:
-    mobs:
+  1: # Spawner level 1
+    mobs: # List of mobs
     - 'COW'
     - 'ZOMBIE'
-    levels: 10
+    cost: 10 # How many XP levels, money, or XP it costs to upgrade to this level
   2:
     mobs:
     - 'BLAZE'
-    levels: 20
+    cost: 20
 
 # List your spawners here that you would like players to unlock at level 0
 default-spawners:
   - 'SPIDER'
+
+# Write command aliases here for /spawnerrankup, so players don't need to type a huge command
+spawnerrankup-aliases:
+  - 'sru'
+
+rankup-gui:
+  enabled: true
+  rows: 3
+  confirm-item: 'WOOL:5'
+  confirm-name: '&aCONFIRM'
+  confirm-lore-regular: # Placeholders: {level}, {nextlevel}, {nextlevelcost}
+  - '&7Level &e{level} &7-> level &c{nextlevel}'
+  - '&7Cost -> &e{nextlevelcost}'
+  confirm-lore-max:
+  - '&7MAX LEVEL'
+  confirm-slots:
+    - 12
+    - 13
+    - 14
+  cancel-item: 'WOOL:14'
+  cancel-name: '&cDENY'
+  cancel-lore: []
+  cancel-slots:
+    - 26
+  fill-item: 'AIR'
+  fill-name: ''
+  fill-lore: []
+  title: '&7CONFIRM UPGRADE' # Please do not leave leave any of these below texts empty ('') please
+  confirm-sound-enabled: false
+  confirm-sound: 'random.levelup'
+  confirm-volume: 1.0
+  confirm-pitch: 1.0
+  # Sound when the cancel block is clicked
+  cancel-sound-enabled: false
+  cancel-sound: 'mob.villager.hit'
+  cancel-volume: 1.0
+  cancel-pitch: 1.0
+
 
 # The level that players start at (can only go below default using /su setlevel <player> <level>)
 default-level: 0
@@ -34,12 +75,13 @@ save-interval: 300
 
 messages:
   no-permission-command: '&cNo permission!'
-  no-permission-place: '&cYou cannot place this mob!'
-  no-permission-place-level: '&cYou cannot place this mob yet! You can unlock {spawner} spawners at level {level}!' # Placeholders: {level}, {spawner}
-  not-enough-levels: 'You do not have enough XP levels! You need {xpremaining} more XP level(s) to rankup to level {nextlevel}!' # Placeholders: {xpremaining}, {nextlevel}, {nextlevelxp}
-  max-level: '&aYou are already max level!'
-  next-level: '&aYou are now level {level}!' # Placeholders: {level}, {previouslevel}
+  cannot-place: '&cYou cannot place this mob!'
+  insufficient-level: '&cYou cannot place this mob yet! You can unlock {spawner} spawners at level {level}!' # Placeholders: {level}, {spawner}
+  insufficient-currency: '&cYou do not have enough XP levels! You need {costremaining} more XP level(s) to rankup to level {nextlevel}!' # Placeholders: {costremaining}, {nextlevel}, {nextlevelcost}
+  max-level: '&cYou are already max level!'
+  rankup: '&aYou are now level {level}!' # Placeholders: {level}, {previouslevel}
   level: '&aYou are currently level {level}.' # Placeholders: {level}
+  gui-cancel: '&aYou have canceled the rankup.'
 
 # Please do not change #
 config-version: 1

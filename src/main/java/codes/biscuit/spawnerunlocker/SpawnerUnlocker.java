@@ -4,29 +4,33 @@ import codes.biscuit.spawnerunlocker.commands.LevelCheckCommand;
 import codes.biscuit.spawnerunlocker.commands.RankupCommand;
 import codes.biscuit.spawnerunlocker.commands.SpawnerUnlockerCommand;
 import codes.biscuit.spawnerunlocker.events.PlayerEvents;
+import codes.biscuit.spawnerunlocker.hooks.VaultHook;
+import codes.biscuit.spawnerunlocker.utils.CommandAliasManager;
 import codes.biscuit.spawnerunlocker.utils.ConfigUtils;
 import codes.biscuit.spawnerunlocker.utils.Utils;
-import de.dustplanet.util.SilkUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
-
 public class SpawnerUnlocker extends JavaPlugin {
 
     private ConfigUtils configUtils = new ConfigUtils(this);
     private Utils utils = new Utils(this);
-    private SilkUtil silkUtil;
+    private CommandAliasManager aliasManager = new CommandAliasManager(this);
+    private VaultHook vaultHook;
 
     @Override
     public void onEnable() {
         Bukkit.getPluginManager().registerEvents(new PlayerEvents(this), this);
         getCommand("checklevel").setExecutor(new LevelCheckCommand(this));
-        getCommand("rankup").setExecutor(new RankupCommand(this));
+        getCommand("spawnerrankup").setExecutor(new RankupCommand(this));
         getCommand("spawnerunlocker").setExecutor(new SpawnerUnlockerCommand(this));
         getCommand("spawnerunlocker").setTabCompleter(SpawnerUnlockerCommand.TAB_COMPLETER);
         getConfig().options().copyDefaults(true);
         saveDefaultConfig();
         configUtils.startSpawnerConfig();
-        silkUtil = SilkUtil.hookIntoSilkSpanwers();
+        aliasManager.setAdditionalAliases(getCommand("spawnerrankup"), configUtils.getAliases());
+        if (getServer().getPluginManager().getPlugin("Vault") != null) {
+            vaultHook = new VaultHook().setupEconomy();
+        }
     }
 
     @Override
@@ -48,7 +52,11 @@ public class SpawnerUnlocker extends JavaPlugin {
         return utils;
     }
 
-    public SilkUtil getSilkUtil() {
-        return silkUtil;
+    public CommandAliasManager getAliasManager() {
+        return aliasManager;
+    }
+
+    public VaultHook getVaultHook() {
+        return vaultHook;
     }
 }

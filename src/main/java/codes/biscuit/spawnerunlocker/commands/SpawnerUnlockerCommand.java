@@ -40,6 +40,7 @@ public class SpawnerUnlockerCommand implements CommandExecutor {
                     case "reload":
                         main.reloadConfig();
                         main.getConfigUtils().restartSaveTask();
+                        main.getAliasManager().setAdditionalAliases(main.getCommand("spawnerrankup"), main.getConfigUtils().getAliases());
                         sender.sendMessage(ChatColor.GREEN + "Successfully reloaded the config. Most values have been instantly updated.");
                         break;
                     case "setlevel":
@@ -87,8 +88,8 @@ public class SpawnerUnlockerCommand implements CommandExecutor {
                 sender.sendMessage(ChatColor.GRAY.toString() + ChatColor.STRIKETHROUGH + "-----------------------------------------------");
             }
         } else {
-            if (!main.getConfigUtils().getNoPermissionMessage().equals("")) {
-                sender.sendMessage(main.getConfigUtils().getNoPermissionMessage());
+            if (!main.getConfigUtils().getNoPermissionCommandMessage().equals("")) {
+                sender.sendMessage(main.getConfigUtils().getNoPermissionCommandMessage());
             }
         }
         return true;

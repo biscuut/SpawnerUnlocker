@@ -4,7 +4,7 @@ version: 1.0
 author: Biscut
 depend: [SilkSpawners]
 commands:
-  rankup:
+  spawnerrankup:
     description: Use xp to rankup to the next level.
   spawnerunlocker:
     aliases: [su]
@@ -16,4 +16,6 @@ permissions:
   spawnerunlocker.admin:
     default: op
   spawnerunlocker.checklevel:
+    default: true
+  spawnerunlocker.rankup:
     default: true
