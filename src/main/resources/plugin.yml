@@ -3,6 +3,7 @@ name: SpawnerUnlocker
 version: 1.0
 author: Biscut
 depend: [SilkSpawners]
+softdepend: [Vault]
 commands:
   spawnerrankup:
     description: Use xp to rankup to the next level.

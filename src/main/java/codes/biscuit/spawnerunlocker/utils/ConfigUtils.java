@@ -153,8 +153,18 @@ public class ConfigUtils {
 
     public String getInsufficientCurrencyMessage(int nextLevel, double nextLevelCost, double playerCurrency) {
         double difference = nextLevelCost - playerCurrency;
-        return ChatColor.translateAlternateColorCodes('&', main.getConfig().getString("messages.insufficient-currency").replace("{nextlevelcost}", String.valueOf(nextLevelCost))
-                .replace("{costremaining}", String.valueOf(difference)).replace("{nextlevel}", String.valueOf(nextLevel)));
+        String message = ChatColor.translateAlternateColorCodes('&', main.getConfig().getString("messages.insufficient-currency").replace("{nextlevel}", String.valueOf(nextLevel)));
+        if (nextLevelCost % 1 == 0) {
+            message = message.replace("{nextlevelcost}", String.valueOf((int)nextLevelCost));
+        } else {
+            message = message.replace("{nextlevelcost}", String.valueOf(nextLevelCost));
+        }
+        if (difference % 1 == 0) {
+            message = message.replace("{costremaining}", String.valueOf((int)difference));
+        } else {
+            message = message.replace("{costremaining}", String.valueOf(difference));
+        }
+        return message;
     }
 
     public String getMaxLevelMessage() {
@@ -284,8 +294,13 @@ public class ConfigUtils {
         List<String> uncolouredList = main.getConfig().getStringList("rankup-gui.confirm-lore-regular");
         List<String> colouredList = new ArrayList<>();
         for (String s : uncolouredList) {
-            colouredList.add(ChatColor.translateAlternateColorCodes('&', s).replace("{level}", String.valueOf(level)).replace("{nextlevel}", String.valueOf(nextLevel)
-            .replace("{nextlevelcost}", String.valueOf(nextLevelCost))));
+            if (nextLevelCost % 1 == 0) {
+                colouredList.add(ChatColor.translateAlternateColorCodes('&', s).replace("{level}", String.valueOf(level)).replace("{nextlevel}", String.valueOf(nextLevel)
+                ).replace("{nextlevelcost}", String.valueOf((int)nextLevelCost)));
+            } else {
+                colouredList.add(ChatColor.translateAlternateColorCodes('&', s).replace("{level}", String.valueOf(level)).replace("{nextlevel}", String.valueOf(nextLevel)
+                ).replace("{nextlevelcost}", String.valueOf(nextLevelCost)));
+            }
         }
         return colouredList;
     }

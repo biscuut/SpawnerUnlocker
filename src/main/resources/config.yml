@@ -11,6 +11,7 @@
 ##########################################################################################
 
 # Choose what currency it uses to level up. Options: 'XPLEVELS', 'MONEY', 'XP'
+# NOTE: MONEY requires Vault (plugin)!
 currency: 'XPLEVELS'
 
 # List your spawners and XP levels here
@@ -39,8 +40,8 @@ rankup-gui:
   confirm-item: 'WOOL:5'
   confirm-name: '&aCONFIRM'
   confirm-lore-regular: # Placeholders: {level}, {nextlevel}, {nextlevelcost}
-  - '&7Level &e{level} &7-> level &c{nextlevel}'
-  - '&7Cost -> &e{nextlevelcost}'
+  - '&7Level &e{level} &7-> level &e{nextlevel}'
+  - '&7Cost: &e{nextlevelcost} XP levels'
   confirm-lore-max:
   - '&7MAX LEVEL'
   confirm-slots:
@@ -70,9 +71,6 @@ rankup-gui:
 # The level that players start at (can only go below default using /su setlevel <player> <level>)
 default-level: 0
 
-# How often should the server save the levels config? (in seconds)
-save-interval: 300
-
 messages:
   no-permission-command: '&cNo permission!'
   cannot-place: '&cYou cannot place this mob!'
@@ -80,8 +78,11 @@ messages:
   insufficient-currency: '&cYou do not have enough XP levels! You need {costremaining} more XP level(s) to rankup to level {nextlevel}!' # Placeholders: {costremaining}, {nextlevel}, {nextlevelcost}
   max-level: '&cYou are already max level!'
   rankup: '&aYou are now level {level}!' # Placeholders: {level}, {previouslevel}
-  level: '&aYou are currently level {level}.' # Placeholders: {level}
+  level: '&aYou are currently spawner level {level}.' # Placeholders: {level}
   gui-cancel: '&aYou have canceled the rankup.'
+
+# How often should the server save the levels config? (in seconds)
+save-interval: 300
 
 # Please do not change #
 config-version: 1
